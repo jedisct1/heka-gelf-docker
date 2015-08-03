@@ -17,7 +17,7 @@ logging to Kafka, uncomment the `[KafkaOutput]` section in
 
 Heka's dashboard is exposed on port 4352.
 
-To create the certificate for TLS:
+To create a self-signed certificate for TLS:
 
 ```bash
 openssl req -x509 -nodes -newkey rsa:2048 -sha256 -keyout heka.pem -out heka.pem
