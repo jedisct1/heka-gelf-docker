@@ -1,15 +1,13 @@
 diff --git a/cmake/externals.cmake b/cmake/externals.cmake
-index 9ff2022..83cda6e 100644
+index 9ff2022..c7fd349 100644
 --- a/cmake/externals.cmake
 +++ b/cmake/externals.cmake
-@@ -18,8 +18,8 @@ if(INCLUDE_SANDBOX)
-     set(SANDBOX_ARGS -DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE} -DCMAKE_INSTALL_PREFIX=${PROJECT_PATH} -DLUA_JIT=off --no-warn-unused-cli)
+@@ -19,7 +19,7 @@ if(INCLUDE_SANDBOX)
      externalproject_add(
          ${SANDBOX_PACKAGE}
--        GIT_REPOSITORY https://github.com/mozilla-services/lua_sandbox.git
+         GIT_REPOSITORY https://github.com/mozilla-services/lua_sandbox.git
 -        GIT_TAG 82ae00d85f3111ee77bf15dbcb97264f177a66ec
-+        GIT_REPOSITORY https://github.com/jedisct1/lua_sandbox.git
-+        GIT_TAG rfc5424-sd
++        GIT_TAG 8602e0a6fb098f083d8a80947dce0320fe70b0a3
          CMAKE_ARGS ${SANDBOX_ARGS}
          INSTALL_DIR ${PROJECT_PATH}
      )
