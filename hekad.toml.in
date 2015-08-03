@@ -1,0 +1,49 @@
+[hekad]
+maxprocs = @THREADS@
+share_dir = "/opt/heka/build/heka/share/heka"
+
+[TcpInput]
+address = "0.0.0.0:6514"
+use_tls = @USE_TLS@
+keep_alive = false
+splitter = "split_on_newline"
+decoder = "syslog_decoder"
+synchronous_decode = false
+
+[TcpInput.tls]
+cert_file = "/etc/ssl/private/heka.pem"
+key_file = "/etc/ssl/private/heka.pem"
+
+[syslog_decoder]
+type = "SandboxDecoder"
+filename = "lua_decoders/rsyslog.lua"
+
+[syslog_decoder.config]
+type = "RSYSLOG_TraditionalFileFormat"
+template = '<%PRI%>1 %TIMESTAMP:::date-rfc3339% %HOSTNAME% %APP-NAME% %PROCID% %MSGID% %STRUCTURED-DATA% %msg%\n'
+tz = "UTC"
+
+[split_on_newline]
+type = "TokenSplitter"
+count = 1
+
+[gelf_encoder.config]
+extra_properties = "@EXTRA_PROPERTIES@"
+
+[gelf_encoder]
+type = "SandboxEncoder"
+filename = "/opt/heka/local/lua_encoders/gelf.lua"
+
+[DashboardOutput]
+ticker_interval = 30
+
+[LogOutput]
+message_matcher = "TRUE"
+encoder = "gelf_encoder"
+
+#[KafkaOutput]
+#type = "KafkaOutput"
+#message_matcher = "TRUE"
+#topic = "@KAFKA_TOPIC@"
+#addrs = @KAFKA_BROKERS@
+#encoder = "gelf_encoder"
