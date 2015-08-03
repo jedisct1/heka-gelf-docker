@@ -1,5 +1,5 @@
 diff --git a/cmake/externals.cmake b/cmake/externals.cmake
-index 9ff2022..d23a91a 100644
+index 9ff2022..83cda6e 100644
 --- a/cmake/externals.cmake
 +++ b/cmake/externals.cmake
 @@ -18,8 +18,8 @@ if(INCLUDE_SANDBOX)
@@ -14,17 +14,16 @@ index 9ff2022..d23a91a 100644
          INSTALL_DIR ${PROJECT_PATH}
      )
 diff --git a/sandbox/lua/decoders/rsyslog.lua b/sandbox/lua/decoders/rsyslog.lua
-index d6a36ff..d568693 100644
+index d6a36ff..b3256f8 100644
 --- a/sandbox/lua/decoders/rsyslog.lua
 +++ b/sandbox/lua/decoders/rsyslog.lua
-@@ -105,6 +105,13 @@ function process_message ()
+@@ -105,6 +105,12 @@ function process_message ()
      msg.Payload = fields.msg
      fields.msg = nil
-
-+    if fields["structured-data"] then
-+        for k, v in pairs(fields["structured-data"]) do
-+            fields[k] = v
-+        end
+ 
++    local sd = fields["structured-data"]
++    if sd and type(sd) == "table" then
++        for k, v in pairs(sd) do fields[k] = v end
 +        fields["structured-data"] = nil
 +    end
 +

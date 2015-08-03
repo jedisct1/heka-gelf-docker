@@ -64,6 +64,7 @@ COPY heka.patch /tmp/heka/
 
 RUN set -x && \
     cd /tmp/heka && \
+    git checkout 28690a9e3fed52e6b99ef7750ad685219ea39c00 && \
     patch -p1 < heka.patch && \
     ./build.sh && \
     mkdir -p /opt && \
