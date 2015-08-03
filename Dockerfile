@@ -51,7 +51,7 @@ RUN set -x && \
     mkdir -p /opt && \
     tar xz -C /opt -f golang.tar.gz && \
     rm -f golang.tar.gz && \
-    # rm -fr /opt/go/{doc, src, test, pkg, api} && \
+    rm -fr /opt/go/{doc, src, test, pkg, api} && \
     go version && \
     rm -fr /tmp/*
 
