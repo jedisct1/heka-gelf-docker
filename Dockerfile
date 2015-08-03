@@ -35,6 +35,7 @@ RUN set -x && \
         bsdmainutils \
         ca-certificates \
         jed \
+        libgeoip-dev \
         lua5.2-dev \
         lua-cjson-dev \
         --no-install-recommends
