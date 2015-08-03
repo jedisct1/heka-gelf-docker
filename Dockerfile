@@ -1,6 +1,6 @@
 FROM caleblloyd/phusion-baseimage-docker-15.04
 MAINTAINER Frank Denis
-ENV SERIAL 1
+ENV SERIAL 2
 
 ENV GOROOT /opt/go
 ENV PATH $PATH:/opt/go/bin
