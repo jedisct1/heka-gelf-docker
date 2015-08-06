@@ -1,4 +1,4 @@
-FROM caleblloyd/phusion-baseimage-docker-15.04
+FROM jedisct1/phusion-baseimage-latest:15.04
 MAINTAINER Frank Denis
 ENV SERIAL 4
 
@@ -40,8 +40,8 @@ RUN set -x && \
         lua-cjson-dev \
         --no-install-recommends
 
-ENV GOLANG_VERSION 1.5beta3
-ENV GOLANG_SHA256 50823fb97b2c7daa340d1dbf8ea94892c4063d41c3e58d1c3b1ec42636f371c9
+ENV GOLANG_VERSION 1.5rc1
+ENV GOLANG_SHA256 33678f875361355072198d7bbd9c04b5f37d7e0e4aab2c94c9d0a0cd98622289
 ENV GOLANG_DOWNLOAD_URL https://storage.googleapis.com/golang/go${GOLANG_VERSION}.linux-amd64.tar.gz
 
 RUN set -x && \
